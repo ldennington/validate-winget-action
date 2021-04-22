@@ -12,8 +12,8 @@ jobs:
         version: 2.0.194.40577
         token: ${{ secrets.WINGET_TOKEN }}
         manifestText: |
-          PackageIdentifier: {{id}}
-          PackageVersion: {{version}}
+          PackageIdentifier: Microsoft.GitCredentialManagerCore
+          PackageVersion: 2.0.194.40577
           PackageName: Git Credential Manager Core
           Publisher: Microsoft Corporation
           Moniker: git-credential-manager-core
