@@ -9,10 +9,11 @@ jobs:
       uses: mjcheetham/update-winget@v1.0
       with:
         id: Microsoft.GitCredentialManagerCore
+        version: 2.0.194.40577
         token: ${{ secrets.WINGET_TOKEN }}
         manifestText: |
-          PackageIdentifier: Microsoft.GitCredentialManagerCore
-          PackageVersion: 2.0.194.40577
+          PackageIdentifier: {{id}}
+          PackageVersion: {{version}}
           PackageName: Git Credential Manager Core
           Publisher: Microsoft Corporation
           Moniker: git-credential-manager-core
