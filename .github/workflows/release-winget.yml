@@ -1,31 +1,43 @@
 name: "release-winget"
-on: [push]
+on:
+  release:
+    types: [released]
+  push:
+    branches:
+      - ldennington/add-release-winget
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-    - name: Update winget repository
-      uses: mjcheetham/update-winget@v1.0
+    - id: update-winget
+      name: Update winget repository
+      uses: mjcheetham/update-winget@v1.1
       with:
-        id: Microsoft.GitCredentialManagerCore
-        version: 2.0.194.40577
-        token: ${{ secrets.WINGET_TOKEN }}
+        id: Microsoft.Git
+        token: ${{ secrets.WINGET_TOKEN }}   
+        releaseAsset: Git-\[0-9.vfs]*\-64-bit.exe
+        repo: ldennington/winget-playground
         manifestText: |
-          PackageIdentifier: Microsoft.GitCredentialManagerCore
-          PackageVersion: 2.0.194.40577
-          PackageName: Git Credential Manager Core
+          PackageIdentifier: {{id}}
+          PackageVersion: {{version}}
+          PackageName: Microsoft Git
           Publisher: Microsoft Corporation
-          Moniker: git-credential-manager-core
-          PackageUrl: https://aka.ms/gcmcore
+          Moniker: microsoft-git
+          PackageUrl: https://aka.ms/ms-git
+          Tags: "microsoft/git"
           License: Copyright (C) Microsoft Corporation
-          ShortDescription: Secure, cross-platform Git credential storage with authentication to GitHub, Azure Repos, and other popular Git hosting services.
+          ShortDescription: Git distribution to support monorepo scenarios. 
+                            Note: This is not Git for Windows - unless you are working in a monorepo and require
+                            specific Git modifications, please run `winget install git` to start using Git for Windows.
           Installers:
-          - Architecture: x64
-            InstallerUrl: https://github.com/microsoft/Git-Credential-Manager-Core/releases/download/v2.0.194-beta/gcmcore-win-x86-2.0.194.40577.exe
-            InstallerType: inno
-            InstallerSha256: 26D3662F66E6AEC76C3BF155028D22D30ED8D1F1AFFA7C676F8DB0426939E8AD
+          - Arch: x64
+            Url: {{url}}
+            InstallerType: Inno
+            Sha256: {{sha256}}
           PackageLocale: en-US
           ManifestType: singleton
           ManifestVersion: 1.0.0
         alwaysUsePullRequest: true
+        releaseRepo: 'microsoft/git'
+        releaseTag: 'v2.31.1.vfs.0.0'
