@@ -29,7 +29,7 @@ jobs:
           License: Copyright (C) Microsoft Corporation
           ShortDescription: Git distribution to support monorepo scenarios. 
                             Note: This is not Git for Windows - unless you are working in a monorepo and require
-                            specific Git modifications, please run `winget install git` to start using Git for Windows.
+                            specific Git modifications, please run `winget install git` to install Git for Windows instead.
           Installers:
           - Arch: x64
             Url: {{url}}
