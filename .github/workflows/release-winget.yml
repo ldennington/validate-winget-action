@@ -25,16 +25,17 @@ jobs:
           Publisher: Microsoft Corporation
           Moniker: microsoft-git
           PackageUrl: https://aka.ms/ms-git
-          Tags: "microsoft/git"
+          Tags: [ microsoft/git ]
           License: Copyright (C) Microsoft Corporation
-          ShortDescription: Git distribution to support monorepo scenarios. 
-                            Note: This is not Git for Windows - unless you are working in a monorepo and require
-                            specific Git modifications, please run `winget install git` to install Git for Windows instead.
+          ShortDescription: | 
+            Git distribution to support monorepo scenarios. 
+            Note - this is not Git for Windows. Unless you are working in a monorepo and require
+            specific Git modifications, please run `winget install git` to install Git for Windows instead.
           Installers:
-          - Arch: x64
-            Url: {{url}}
-            InstallerType: Inno
-            Sha256: {{sha256}}
+          - Architecture: x64
+            InstallerUrl: {{url}}
+            InstallerType: inno
+            InstallerSha256: {{sha256}}
           PackageLocale: en-US
           ManifestType: singleton
           ManifestVersion: 1.0.0
