@@ -9,7 +9,6 @@ jobs:
       name: Update winget repository
       uses: mjcheetham/update-winget@v1.2.1
       with:
-        with:
         id: Microsoft.VFSforGit
         token: ${{ secrets.WINGET_TOKEN }}
         releaseAsset: SetupGVFS.([0-9.]*)\.exe
