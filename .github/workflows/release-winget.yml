@@ -34,4 +34,4 @@ jobs:
           ManifestVersion: 1.0.0
         alwaysUsePullRequest: true
         releaseRepo: 'microsoft/VFSForGit'
-        releaseTag: '1.0.21085.9'
+        releaseTag: 'v1.0.21085.9'
