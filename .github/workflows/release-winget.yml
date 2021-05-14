@@ -1,10 +1,5 @@
 name: "release-winget"
-on:
-  release:
-    types: [released]
-  push:
-    branches:
-      - ldennington/add-release-winget
+on: [push]
 
 jobs:
   release:
@@ -12,26 +7,22 @@ jobs:
     steps:
     - id: update-winget
       name: Update winget repository
-      uses: mjcheetham/update-winget@v1.2
+      uses: mjcheetham/update-winget@v1.2.1
       with:
         with:
-        id: Microsoft.Git
+        id: Microsoft.VFSforGit
         token: ${{ secrets.WINGET_TOKEN }}
-        releaseAsset: Git-([0-9.vfs]*)\-64-bit.exe
-        repo: ldennington/winget-playground
+        releaseAsset: SetupGVFS.([0-9.]*)\.exe
         manifestText: |
           PackageIdentifier: {{id}}
           PackageVersion: {{version}}
-          PackageName: Microsoft Git
+          PackageName: VFS for Git
           Publisher: Microsoft Corporation
-          Moniker: microsoft-git
-          PackageUrl: https://aka.ms/ms-git
-          Tags: [ microsoft-git ]
+          Moniker: vfs-for-git
+          PackageUrl: https://aka.ms/vfs-for-git
+          Tags: [ "vfs for git", "vfs-for-git", "vfsforgit", "gvfs" ]
           License: Copyright (C) Microsoft Corporation
-          ShortDescription: |
-            Git distribution to support monorepo scenarios.
-            Note: This is not Git for Windows. Unless you are working in a monorepo and require
-            specific Git modifications, please run `winget install git` to start using Git for Windows.
+          ShortDescription: Virtual File System for Git - a tool to scale Git for monorepo scenarios.
           Installers:
           - Architecture: x64
             InstallerUrl: {{url}}
@@ -43,5 +34,5 @@ jobs:
           ManifestType: singleton
           ManifestVersion: 1.0.0
         alwaysUsePullRequest: true
-        releaseRepo: 'microsoft/git'
-        releaseTag: 'v2.31.1.vfs.0.1'
+        releaseRepo: 'microsoft/VFSForGit'
+        releaseTag: '1.0.21085.9'
